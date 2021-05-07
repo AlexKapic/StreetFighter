@@ -11,3 +11,29 @@
 .fighter-preview___left {
   align-items: flex-start;
 }
+
+/* my styles for fighterPreview */
+.fighter-preview___right img {
+  transform: scale(-1, 1);
+}
+
+.fighter-preview___img {
+  margin: 0 auto;
+  width: auto;
+  height: 300px;
+}
+
+.fighterName {
+  margin: 0 auto;
+  font-size: 38px;
+  font-weight: bold;
+  text-shadow: 2px 2px #ff0000;
+}
+
+.fighterInfo {
+  margin: 0 auto;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px #ff0000;
+}
