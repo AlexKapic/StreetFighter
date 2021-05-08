@@ -63,6 +63,22 @@ export async function fight(firstFighter, secondFighter) {
       indicator.style.width = defender.healthPoints <= 0 ? '0%' : `${(defender.healthPoints * 100) / defender.health}%`;
       if (defender.healthPoints <= 0) resolve(attacker);
     }
+
+    function criticalKick(attacker, defender, indicator) {
+      if (!attacker.criticalKick) {
+        defender.healthPoints -= attacker.attack * 2;
+        indicator.style.width =
+          defender.healthPoints <= 0 ? '0%' : `${(defender.healthPoints * 100) / defender.health}%`;
+        attacker.criticalKick = true;
+        setTimeout(() => {
+          attacker.criticalKick = false;
+        }, 10000);
+      }
+
+      if (defender.healthPoints <= 0) {
+        return resolve(attacker);
+      }
+    }
     
   });
 }
@@ -90,17 +106,4 @@ function isCriticalKick(combination, pressedKey) {
     }
   }
   return true;
-}
-
-function criticalKick(attacker, defender, indicator) {
-  if (!attacker.criticalKick) {
-    defender.healthPoints -= attacker.attack * 2;
-    indicator.style.width = defender.healthPoints <= 0 ? '0%' : `${(defender.healthPoints * 100) / defender.health}%`;
-    attacker.criticalKick = true;
-    setTimeout(() => {
-      attacker.criticalKick = false;
-    }, 10000);
-  }
-
-  if (defender.healthPoints <= 0) resolve(attacker);
 }
