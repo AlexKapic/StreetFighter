@@ -38,7 +38,7 @@ export async function fight(firstFighter, secondFighter) {
 
       switch (event.code) {
         case controls.PlayerOneAttack:
-          if (!secondFighter.blocking) {
+          if (!secondFighter.blocking && !firstFighter.blocking) {
             kick(firstFighter, secondFighter, secondFighterHealthIndicator);
           }
           break;
@@ -46,7 +46,7 @@ export async function fight(firstFighter, secondFighter) {
           firstFighter.blocking = false;
           break;
         case controls.PlayerTwoAttack:
-          if (!firstFighter.blocking) {
+          if (!firstFighter.blocking && !secondFighter.blocking) {
             kick(secondFighter, firstFighter, firstFighterHealthIndicator);
           }
           break;
@@ -79,7 +79,7 @@ export async function fight(firstFighter, secondFighter) {
         return resolve(attacker);
       }
     }
-    
+
   });
 }
 
